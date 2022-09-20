@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>html_fields_formatter</name>
+        <scoped_name>x_momo_inc_rvw_html_fields_formatter</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-28 13:35:47</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>331757fddb92f7001d555eea4b961973</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>html_fields_formatter</sys_name>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_update_name>sys_ui_macro_331757fddb92f7001d555eea4b961973</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-06-28 13:55:50</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<g2:evaluate var="jvar_review_stage">
+		var review_stage = '$[current.u_review_stage]';
+		review_stage;
+	</g2:evaluate>
+	<g2:evaluate var="jvar_html_wins">
+		var html_wins = "$[current.u_review_html_wins]";
+		html_wins;
+	</g2:evaluate>
+	<g2:evaluate var="jvar_html_improvements">
+		var html_improvements = "$[current.u_review_html_improvements]";
+		html_improvements;
+	</g2:evaluate>
+	<j2:if test="$[jvar_review_stage == 'technician review' || jvar_review_stage == 'closed']">
+		<j2:if test="$[!empty(jvar_html_wins)]">
+		<div class="container" style="margin-bottom:10px;">
+			
+			<div class="row">
+				<div class="col-xs-12" style="padding-left:0px;">
+					<h3>Wins</h3>
+				</div>
+			</div>
+			<div class="row" style="border: 1px solid #bdc0c4;border-radius:2px;padding:10px;">
+				<div class="col-xs-12" style="padding:5px;">
+					<g2:no_escape>$[jvar_html_wins]</g2:no_escape>
+				</div>
+			</div>
+		</div>
+		</j2:if>
+		<j2:if test="$[!empty(jvar_html_improvements)]">
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-xs-12" style="padding-left:0px;">
+					<h3>Improvements</h3>
+				</div>
+			</div>
+			<div class="row" style="border: 1px solid #bdc0c4;border-radius:2px;padding:10px;">
+				<div class="col-xs-12" style="padding:5px;">
+					<g2:no_escape>$[jvar_html_improvements]</g2:no_escape>
+				</div>
+			</div>
+		</div>
+		</j2:if>
+	</j2:if>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>active</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>incident_review_onload</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+  g_form.setDisabled('appeal', true);
+  g_form.setDisplay('appeal', false);
+  g_form.setDisabled('appealled_at', true);
+  g_form.setDisplay('appealled_at', false);
+  var form_fields = {
+    technician: {
+      disabled: {
+        'u_inc': [
+          'category',
+          'subcategory',
+          'priority',
+          'caller',
+          'short_description',
+          'description',
+          'contact_type',
+          'assignment_group',
+          'assigned_to',
+		  'incident_type'
+        ],
+        'u_review_bool': [
+          'articles_sent',
+          'phone_call',
+          'client_availability',
+          'appr_resp',
+          'back_forth',
+          'resp_time',
+          'timely_resolve',
+          'synopsis',
+          'resolve_permission'
+        ],
+        'u_transfer_bool': [
+          'ack',
+          'dept_contact',
+          'detailed_work'
+        ],
+        'u_review_html': [
+          'wins',
+          'improvements'
+        ]
+      },
+      hidden: {
+        'u_review_html': [
+          'wins',
+          'improvements'
+        ]
+      }
+    },
+    manager: {
+      disabled: {
+        'u_inc': [
+          'incident_type'
+        ],
+        'u_review': [
+          'stage'
+        ]
+      }
+    },
+    all: {
+      disabled: {
+        incident: [
+          'category',
+          'subcategory',
+          'priority',
+          'caller_id',
+          'assigned_to',
+          'assignment_group',
+          'description',
+          'short_description',
+          'contact_type'
+        ]
+      }
+    }
+  };
+
+  var stage = g_form.getValue('u_review_stage');
+
+  var manager = g_user.hasRole('x_momo_inc_rvw.inc_review_manager') || g_user.hasRole('admin');
+
+  var incident = g_form.getValue('incident');
+
+  var type = g_form.getValue('u_inc_incident_type');
+
+  var currentUser = g_user.userID;
+
+  var all_disabled = form_fields.all.disabled;
+
+  var all_disabled_keys = Object.keys(all_disabled);
+
+  var flat_all_disabled_array = flatten(all_disabled_keys, all_disabled, '.');
+
+  disableFormFields(flat_all_disabled_array);
+  hideSectionByIncidentType();
+
+
+  function flatten(keys, obj, delimiter) {
+    var arr = [];
+    for (var index=0;index<keys.length;index++) {
+      var array = obj[keys[index]];
+      for (var field=0;field<array.length;field++) {
+        arr.push(keys[index] + delimiter + array[field]);
+      }
+    }
+    return arr;
+  }
+
+  var hasIncident = (incident != null 
+    && incident != undefined
+    && incident != '');
+
+  function getTechnician() {
+    return new Promise(function(resolve, reject) {
+      
+      if (!hasIncident) return resolve(false);
+
+      var ga = new GlideAjax('IsTechnicianAssigned');
+      ga.addParam("sysparm_name", "getFields");
+      ga.addParam("sysparm_incident_id", incident);
+      ga.addParam("sysparm_user_id", currentUser);
+      ga.getXML(function(res) {
+        var answer = res.responseXML.documentElement.getAttribute("answer");
+        return resolve(answer);
+      });
+    });
+  }
+
+  function hideRelatedActivityFeed() {
+    try {
+      var sections = g_form.getSections();
+      var section = sections[0];
+	  var child;
+	  try {
+		  child = section.children[8];
+	  } catch (e) {
+		  child = section.children[9];
+	  }
+      
+      var row = child.children[1];
+
+      var col = row.children[0];
+      var formGroup = col.children[1];
+      formGroup.innerHTML = '<div><!-- Empty Related Activity Feed Placeholder --></div>';
+    } catch (e) { console.log(e); }
+  }
+
+  function goBack() {
+    try {
+      return gsftSubmitBack();
+    } catch (e) {
+      return gsft_main.history.back();
+    }
+  }
+
+  function hideAllSections() {
+    var sections = g_form.getSectionNames();
+    for (var i=0;i<sections.length;i++) {
+      g_form.setSectionDisplay(sections[i], false);
+    }
+    return;
+  }
+
+  function displaySectionsByNames(names, hide) {
+
+    for (var n=0;n<names.length;n++) {
+      try {
+        g_form.setSectionDisplay(names[n], hide);
+      } catch (e) {}      
+    }
+
+    return;
+  }
+
+  function disableFormFields(fields) {
+    for (var f=0;f<fields.length;f++) {
+      if (g_form.isMandatory(fields[f])) {
+        g_form.setMandatory(fields[f], false);
+      }
+      g_form.setDisabled(fields[f], true);
+    }
+
+    return;
+  }
+
+  function hideFormFields(formFields) {
+    for (var h=0;h<formFields.length;h++) {
+      if (g_form.isMandatory(formFields[h])) {
+        g_form.setMandatory(formFields[h], false);
+      }
+      g_form.setDisplay(formFields[h], false);
+    }
+
+    return;
+  }
+
+  function hideSectionByIncidentType() {
+    g_form.setSectionDisplay("incident_initialsteps1pointeach", true);
+    g_form.setSectionDisplay("managers_notes", true);
+    if (type === 'new') {
+      g_form.setSectionDisplay("transfer_incident2pointseach", false);
+      g_form.setSectionDisplay("follow_up2pointseach", true);
+      g_form.setSectionDisplay("resolution_2pointseach", true);
+      g_form.setSectionDisplay("initial_response2pointseach", true);
+    } else if (type === 'existing') {
+      g_form.setSectionDisplay("transfer_incident2pointseach", false);
+      g_form.setSectionDisplay("initial_response2pointseach", true);
+      g_form.setSectionDisplay("resolution_2pointseach", true);
+      g_form.setSectionDisplay("follow_up2pointseach", true);
+    } else if (type === 'transfer') {
+      g_form.setSectionDisplay("transfer_incident2pointseach", true);
+      g_form.setSectionDisplay("resolution_2pointseach", false);
+      g_form.setSectionDisplay("follow_up2pointseach", false);
+      g_form.setSectionDisplay("initial_response2pointseach", false);
+    }
+
+    return;
+  }
+
+  getTechnician().then(function(user_id) {
+    var technician = user_id === currentUser;
+	if (g_form.getValue('appeal')) {
+	  g_form.setDisplay('appealed_at', true);
+	} else {
+	  g_form.setDisplay('appealed_at', false);
+	}
+    if (manager) {
+      if (stage === 'new') {
+        hideAllSections();
+        hideRelatedActivityFeed();
+
+        g_form.setDisabled('u_review_stage', true);
+        g_form.setMandatory('u_inc_incident_type', false);
+        g_form.setDisplay('u_inc_incident_type', false);
+        g_form.setMandatory('incident', true);
+
+      } else if (stage === 'closed') {
+        var disable = form_fields.technician.disabled;
+        var hide = form_fields.technician.hidden;
+
+        var disable_keys = Object.keys(disable);
+        var hide_keys = Object.keys(hide);
+
+        var flat_hide = flatten(hide_keys, hide, '_');
+        var flat_disable = flatten(disable_keys, disable, '_');
+        disableFormFields(flat_disable);
+        hideFormFields(flat_hide);
+        hideRelatedActivityFeed();
+        g_form.setMandatory('incident', false);
+        g_form.setDisabled('incident', true);
+      } else if (stage === 'manager review' || stage === 'technician review') {
+        if (stage === 'technician review') {
+		  g_form.setMandatory('incident', false);
+		  g_form.setDisabled('incident', true);
+          g_form.setMandatory('u_review_html_wins', false);
+          g_form.setDisplay('u_review_html_wins', false);
+          g_form.setMandatory('u_review_html_improvements', false);
+          g_form.setDisplay('u_review_html_improvements', false);     
+        }
+        if (hasIncident) {
+          var manager_disabled = form_fields.manager.disabled;
+          var manager_disabled_keys = Object.keys(manager_disabled);
+
+          var flat_manager_disabled = flatten(manager_disabled_keys, manager_disabled, '_');
+
+          disableFormFields(flat_manager_disabled);
+
+
+          
+        } else {
+          hideAllSections();
+          hideRelatedActivityFeed();
+          g_form.setDisabled('u_review_stage', true);
+          g_form.setDisplay('u_inc_incident_type', false);
+          g_form.setMandatory('incident', true);
+        }
+      }
+    } else if (technician) {
+      if (stage !== 'technician review' && stage !== 'closed') {
+        goBack();
+      } else {
+        g_form.setMandatory('incident', false);
+        g_form.setDisabled('incident', true);
+        var hidden = form_fields.technician.hidden;
+        var disabled = form_fields.technician.disabled;
+
+        var disabled_keys = Object.keys(disabled);
+        var hidden_keys = Object.keys(hidden);
+
+        var flat_disable_array = flatten(disabled_keys, disabled, '_');
+        var flat_hidden_array = flatten(hidden_keys, hidden, '_');
+
+        hideFormFields(flat_hidden_array);
+        disableFormFields(flat_disable_array);
+    if (stage == 'closed') {
+      hideRelatedActivityFeed();
+    }
+      }
+    } else {
+      goBack();
+    }
+  });
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-20 14:42:35</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>39aada5fdb06bf004f0589584b9619d3</sys_id>
+        <sys_mod_count>166</sys_mod_count>
+        <sys_name>incident_review_onload</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_update_name>sys_script_client_39aada5fdb06bf004f0589584b9619d3</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-10-31 12:20:57</sys_updated_on>
+        <table>x_momo_inc_rvw_review</table>
+        <type>onLoad</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
+    <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
+        <dependency display_value="Task table schema" source="com.glide.task">55063a74db20320093373c8f9d9619fe</dependency>
+        <min_version>1.0.0</min_version>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2019-09-13 15:49:26</sys_created_on>
+        <sys_id>eb3cd4f2dbfb7f408184349f9d961944</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2019-09-13 15:49:26</sys_updated_on>
+    </sys_package_dependency_m2m>
+</record_update>

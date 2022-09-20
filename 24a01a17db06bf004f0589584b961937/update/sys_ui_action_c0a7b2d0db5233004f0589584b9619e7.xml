@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name>sysverb_insert</action_name>
+        <active>true</active>
+        <client>false</client>
+        <client_script_v2/>
+        <comments/>
+        <condition>(gs.hasRole('x_momo_inc_rvw.inc_review_manager') || gs.hasRole('admin')) &amp;&amp; current.isNewRecord()</condition>
+        <form_action>true</form_action>
+        <form_button>true</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>false</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style>primary</form_style>
+        <format_for_configurable_workspace>false</format_for_configurable_workspace>
+        <hint/>
+        <isolate_script>true</isolate_script>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <messages/>
+        <name>Create Review</name>
+        <onclick>createButtonClick()</onclick>
+        <order>100</order>
+        <script><![CDATA[var rev = new GlideRecord('x_momo_inc_rvw_review');
+
+rev.addQuery('incident', current.incident);
+rev.query();
+
+var alreadyExists;
+if (rev.hasNext()) {
+  while (rev.next()) {
+    gs.addErrorMessage("Sorry that incident is already attached to another record " + rev.number);
+    alreadyExists = true;
+  }
+}
+current.assigned_to = current.incident.assigned_to;
+current.manager = current.incident.assignment_group.manager;
+current.u_review_stage = 'manager review';
+var gr = new GlideRecord('x_momo_inc_rvw_score');
+
+if (current.getValue('u_inc_incident_type') === 'transfer') {
+  gr.total_points = 15;
+} else {
+  gr.total_points = 27;
+}
+
+var columns = {
+  'u_review_bool': [
+    'articles_sent',
+    'phone_call',
+    'client_availability',
+    'appr_resp',
+    'back_forth',
+    'resp_time',
+    'synopsis',
+    'resolve_permission',
+    'timely_resolve'
+  ],
+  'u_transfer_bool': [
+    'ack',
+    'dept_contact',
+    'detailed_work'
+  ],
+  'u_inc': [
+    'category',
+    'subcategory',
+    'priority',
+    'caller',
+    'short_description',
+    'description',
+    'contact_type',
+    'assignment_group',
+    'assigned_to'
+  ]
+};
+
+var mappings = {
+  'u_review_bool_articles_sent': 'kb_or_hub_articles_applied',
+  'u_review_bool_phone_call': 'client_called',
+  'u_review_bool_client_availability': 'check_for_client_availability',
+  'u_review_bool_appr_resp': 'appropriate_response',
+  'u_review_bool_back_forth': 'call_user_if_miscommunication',
+  'u_review_bool_resp_time': 'timely_response',
+  'u_review_bool_synopsis': 'synopsis_given',
+  'u_review_bool_resolve_permission': 'ask_client_for_resolution',
+  'u_transfer_bool_ack': 'user_acknowledgement',
+  'u_transfer_bool_dept_contact': 'warm_handoff',
+  'u_transfer_bool_detailed_work': 'detailed_work_notes',
+  'u_review_bool_timely_resolve': 'resolved_in_timely_manner'
+};
+
+function flatten(keys, obj, delimiter) {
+  var arr = [];
+  for (var index=0;index<keys.length;index++) {
+    var array = obj[keys[index]];
+    for (var field=0;field<array.length;field++) {
+      arr.push(keys[index] + delimiter + array[field]);
+    }
+  }
+  return arr;
+}
+
+var keys = Object.keys(columns);
+
+var flat = flatten(keys, columns, '_');
+
+var initial_value = 0;
+var initial_response = 0;
+var resolution = 0;
+var transfer_total = 0;
+var total_follow_up = 0;
+for (var i=0;i<flat.length;i++) {
+  if (current.getValue(flat[i]) > 0) {
+    if (/^u_inc[_A-Za-z]+/gi.test(flat[i])) {
+      var scoreColumn = flat[i].replace('u_inc_', '');
+      gr.setValue(scoreColumn, 1);
+    } else {
+      var mappedColumn = mappings[flat[i]];
+      gr.setValue(mappedColumn, 2);
+    }
+  }
+}
+initial_value = Number(gr.getValue('category')) + Number(gr.getValue('subcategory')) + Number(gr.getValue('priority')) + Number(gr.getValue('caller')) + Number(gr.getValue('short_description')) + Number(gr.getValue('contact_type')) + Number(gr.getValue('description')) + Number(gr.getValue('assignment_group')) + Number(gr.getValue('assigned_to'));
+initial_response = Number(gr.getValue('kb_or_hub_articles_applied')) + Number(gr.getValue('client_called')) + Number(gr.getValue('check_for_client_availability'));
+resolution = Number(gr.getValue('resolved_in_timely_manner')) + Number(gr.getValue('ask_client_for_resolution')) + Number(gr.getValue('synopsis_given'));
+total_follow_up = Number(gr.getValue('appropriate_response')) + Number(gr.getValue('call_user_if_miscommunication')) + Number(gr.getValue('timely_response'));
+transfer_total = Number(gr.getValue('detailed_work_notes')) + Number(gr.getValue('warm_handoff')) + Number(gr.getValue('user_acknowledgement'));
+
+
+gr.initial_steps = initial_value;
+gr.initial_response = initial_response;
+gr.resolution = resolution;
+gr.follow_up = total_follow_up;
+gr.transfer = transfer_total;
+gr.total = initial_value + initial_response + resolution + transfer_total + total_follow_up;
+if (!alreadyExists) {
+  var score = gr.insert();
+
+  current.score = score;
+
+  current.insert();
+}
+]]></script>
+        <show_insert>true</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-23 19:14:35</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>c0a7b2d0db5233004f0589584b9619e7</sys_id>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>Create Review</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_update_name>sys_ui_action_c0a7b2d0db5233004f0589584b9619e7</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-10-28 17:47:08</sys_updated_on>
+        <table>x_momo_inc_rvw_review</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+</record_update>

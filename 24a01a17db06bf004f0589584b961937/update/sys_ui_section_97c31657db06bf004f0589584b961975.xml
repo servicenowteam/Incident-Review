@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Incident Review" section_id="97c31657db06bf004f0589584b961975" sys_domain="global" table="x_momo_inc_rvw_review" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>number</element>
+            <position>0</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>c4bbbe02db38c450f255132968961920</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>sys_updated_by</element>
+            <position>1</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>48bbbe02db38c450f255132968961920</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>incident</element>
+            <position>2</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>c8bbbe02db38c450f255132968961920</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>u_inc_incident_type</element>
+            <position>3</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>4cbbbe02db38c450f255132968961920</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>4</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>ccbbbe02db38c450f255132968961920</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>opened_at</element>
+            <position>5</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>40bbbe02db38c450f255132968961921</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>sys_created_by</element>
+            <position>6</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>c0bbbe02db38c450f255132968961921</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>u_review_stage</element>
+            <position>7</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>44bbbe02db38c450f255132968961921</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>appealled_at</element>
+            <position>8</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>c4bbbe02db38c450f255132968961921</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>x_momo_inc_rvw_format_multiple_labels.xml</element>
+            <position>9</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>48bbbe02db38c450f255132968961921</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter display_value="Label Formatter">bb2d3625db96b7001d555eea4b9619c9</sys_ui_formatter>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type>formatter</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>10</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>8cbbbe02db38c450f255132968961921</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>x_momo_inc_rvw_score_formatter.xml</element>
+            <position>11</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>00bbbe02db38c450f255132968961922</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter display_value="Score Formatter">c2459802db96f7001d555eea4b96197b</sys_ui_formatter>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type>formatter</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>x_momo_inc_rvw_comments_and_work_notes.xml</element>
+            <position>12</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-10-31 12:33:25</sys_created_on>
+            <sys_id>44bbbe02db38c450f255132968961922</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter display_value="Comments and Work Notes Formatter">2e8484efdb0a33001d555eea4b961958</sys_ui_formatter>
+            <sys_ui_section caption="Incident Review" display_value="Incident Review" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">97c31657db06bf004f0589584b961975</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-10-31 12:33:25</sys_updated_on>
+            <sys_user/>
+            <type>formatter</type>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Incident Review</caption>
+            <header>false</header>
+            <name>x_momo_inc_rvw_review</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-06-20 13:58:53</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>97c31657db06bf004f0589584b961975</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>x_momo_inc_rvw_review</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+            <sys_update_name>sys_ui_section_97c31657db06bf004f0589584b961975</sys_update_name>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-06-22 14:05:01</sys_updated_on>
+            <sys_user/>
+            <title>true</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>score_formatter</name>
+        <scoped_name>x_momo_inc_rvw_score_formatter</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-28 17:48:56</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>0d8bc8c6db56f7001d555eea4b961954</sys_id>
+        <sys_mod_count>55</sys_mod_count>
+        <sys_name>score_formatter</sys_name>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_update_name>sys_ui_macro_0d8bc8c6db56f7001d555eea4b961954</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-06-29 16:06:29</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+  <g2:evaluate var="jvar_score_context" object="true" jelly="true">
+    var sys_id = "${current.score}";
+    var gr = new GlideRecord('x_momo_inc_rvw_score');
+    gr.addQuery('sys_id', "$[current.getValue('score')]");
+    gr.query();
+    var record = {};
+    while (gr.next()) {
+     record['total'] = gr.getValue('total');
+     record['total_points'] = gr.getValue('total_points');
+     
+  };
+  record;
+  </g2:evaluate>
+  <g2:evaluate var="jvar_review_stage">
+    var review = "$[current.u_review_stage]";
+    review;
+  </g2:evaluate>
+  <g2:evaluate jelly="true" var="jvar_total">
+    var total = jelly.jvar_score_context.total;
+    total;
+  </g2:evaluate>
+  <g2:evaluate jelly="true" var="jvar_total_points">
+    var total = jelly.jvar_score_context.total_points;
+    total;
+
+  </g2:evaluate>
+  <j2:if test="$[jvar_review_stage == 'closed' || jvar_review_stage == 'technician review']">
+    <script type="text/javascript">
+      (function(document, jQuery){
+        jQuery(document).ready(function(){
+      var score = JSON.stringify("$[jvar_score_context]");
+          var percentage = Math.round((parseInt("$[jvar_total]") / parseInt("$[jvar_total_points]")) * 100);
+          var color;
+          if (percentage ${AMP}gt; 80 || percentage === 80) {
+            color = '#5cb85c';
+          } else if (percentage ${AMP}gt; 70 || percentage === 70) {
+            color = '#f09c2e';
+          } else if (percentage ${AMP}lt; 70) {
+            color = '#e00015';
+          }
+          jQuery('.total-color').css({'color': color, 'font-weight': 'bold', 'text-align': 'center', 'width': '100%', 'font-size': 30, 'margin-top': '5px', 'margin-bottom': '5px'});
+          jQuery('.total-percentage').html('Incident Review Score: ' + percentage + '%');
+          jQuery('.total-title').html("Points recieved: $[jvar_total] / Total points: $[jvar_total_points]");
+        })
+      })(document, jQuery);
+    </script>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h3 class="total-percentage total-color"></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3 class="total-title total-color"></h3>
+        </div>
+      </div>
+    </div>
+  </j2:if>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

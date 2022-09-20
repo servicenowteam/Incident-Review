@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description>A label format function. Since you cannot use DOM element editing in load scripts. </description>
+        <media_type/>
+        <name>format_multiple_labels</name>
+        <scoped_name>x_momo_inc_rvw_format_multiple_labels</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-27 16:45:47</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>983ab2a1db96b7001d555eea4b9619a7</sys_id>
+        <sys_mod_count>26</sys_mod_count>
+        <sys_name>format_multiple_labels</sys_name>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_update_name>sys_ui_macro_983ab2a1db96b7001d555eea4b9619a7</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-06-28 11:53:07</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<script type="text/javascript">
+		(function(document, jQuery){
+		  function flatten(keys, obj, delimiter) {
+			var arr = [];
+			for (var i=0;i${AMP}lt;keys.length;i++) {
+			  var array = obj[keys[i]];
+			  for (var f=0;f${AMP}lt;array.length;f++) {
+			  arr.push('element.x_momo_inc_rvw_review.' + keys[i] + delimiter + array[f]);
+			  }
+			}
+			return arr;
+		  }
+		  function formatLabels() {
+			var fields = {
+			  'u_review_bool': [
+				'articles_sent',
+				'phone_call',
+				'client_availability',
+				'appr_resp',
+				'back_forth',
+				'resp_time',
+				'synopsis',
+				'resolve_permission',
+				'timely_resolve'
+			  ],
+			  'u_transfer_bool': [
+				'ack',
+				'dept_contact',
+				'detailed_work'
+			  ]
+			};
+
+			var field_keys = Object.keys(fields);
+
+
+			var flat = flatten(field_keys, fields, '_');
+			for (var index=0;index${AMP}lt;flat.length;index++) {
+			  var elem = document.getElementById(flat[index]);
+			  if (elem) {
+				var children = elem.children;
+				var label_div = children[0].children;
+				var label = label_div[0];
+				var l_classList = label.classList;
+				label.style = 'text-align:left;';
+				l_classList.remove('col-md-1_5', 'col-lg-2', 'col-xs-12');
+
+				l_classList.add('col-xs-12');
+				l_classList.add('col-md-4');
+				l_classList.add('col-lg-3');
+
+				var input = children[1];
+
+				var i_classList = input.classList;
+				i_classList.remove('col-xs-10', 'col-md-9', 'col-lg-8');
+				i_classList.add('col-xs-12');
+				i_classList.add('col-md-3');
+				i_classList.add('col-lg-3');
+			  }
+			}
+		  }
+
+		  function formatForeignLabels() {
+			var foreign_fields = {
+			  'incident': [
+				'caller_id',
+				'assignment_group',
+				'assigned_to',
+				'short_description'
+			  ]
+			};
+
+			var foreign_keys = Object.keys(foreign_fields);
+
+			var foreign = flatten(foreign_keys, foreign_fields, '.');
+			for (var findex=0;findex${AMP}lt;foreign.length;findex++) {
+			  var parent = document.getElementById(foreign[findex]);
+			  var child = parent.children[2];
+			  child.innerHTML = '${AMP}lt;!-- Erased default addon for ' + foreign[findex] + '--${AMP}gt;';
+			}
+		  }
+
+
+		  jQuery(document).ready(function(){
+			formatLabels();
+			formatForeignLabels();
+		  })
+	  })(document, jQuery);
+	</script>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

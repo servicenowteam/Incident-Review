@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-20 13:47:55</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>e241d257db06bf004f0589584b961956</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_momo_inc_rvw_review.x_momo_inc_rvw.review_manager</sys_name>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_security_acl display_value="x_momo_inc_rvw_review">2241d257db06bf004f0589584b961952</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_e241d257db06bf004f0589584b961956</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-06-20 13:47:55</sys_updated_on>
+        <sys_user_role display_value="x_momo_inc_rvw.inc_review_manager" name="x_momo_inc_rvw.inc_review_manager">de411e17db06bf004f0589584b96198e</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" extends="task" label="Review" max_length="40" name="x_momo_inc_rvw_review" sizeclass="22" type="collection">
+        <element label="Appeal" max_length="40" name="appeal" read_only="true" type="boolean"/>
+        <element label="Appealed At" max_length="40" name="appealled_at" read_only="true" type="glide_date_time"/>
+        <element label="Incident" mandatory="true" max_length="32" name="incident" reference="incident" reference_qual="assignment_group.managerDYNAMIC90d1921e5f510100a9ad2572f2b477fe^ORassignment_group.managerDYNAMIC0f63961e5f510100a9ad2572f2b47745^ORassignment_group.managerDYNAMIC54635e965f510100a9ad2572f2b4774c^ORassignment_group.managerDYNAMIC9b8d46661b88c41048a242e58d4bcb60^ORassignment_group.manager.managerDYNAMIC90d1921e5f510100a9ad2572f2b477fe^ORassignment_group.manager.managerDYNAMIC0f63961e5f510100a9ad2572f2b47745^ORassignment_group.manager.managerDYNAMIC54635e965f510100a9ad2572f2b4774c^ORassignment_group.manager.managerDYNAMIC9b8d46661b88c41048a242e58d4bcb60^resolved_atONThis month@javascript:gs.beginningOfThisMonth()@javascript:gs.endOfThisMonth()^ORresolved_atONLast month@javascript:gs.beginningOfLastMonth()@javascript:gs.endOfLastMonth()^EQ" reference_qual_condition="assignment_group.managerDYNAMIC90d1921e5f510100a9ad2572f2b477fe^ORassignment_group.managerDYNAMIC0f63961e5f510100a9ad2572f2b47745^ORassignment_group.managerDYNAMIC54635e965f510100a9ad2572f2b4774c^ORassignment_group.managerDYNAMIC9b8d46661b88c41048a242e58d4bcb60^ORassignment_group.manager.managerDYNAMIC90d1921e5f510100a9ad2572f2b477fe^ORassignment_group.manager.managerDYNAMIC0f63961e5f510100a9ad2572f2b47745^ORassignment_group.manager.managerDYNAMIC54635e965f510100a9ad2572f2b4774c^ORassignment_group.manager.managerDYNAMIC9b8d46661b88c41048a242e58d4bcb60^resolved_atONThis month@javascript:gs.beginningOfThisMonth()@javascript:gs.endOfThisMonth()^ORresolved_atONLast month@javascript:gs.beginningOfLastMonth()@javascript:gs.endOfLastMonth()^EQ" type="reference"/>
+        <element label="Manager" max_length="32" name="manager" reference="sys_user" type="reference"/>
+        <element label="Score" max_length="32" name="score" reference="x_momo_inc_rvw_score" type="reference"/>
+        <element label="Assigned To" max_length="40" name="u_inc_assigned_to" type="boolean"/>
+        <element label="Assignment Group" max_length="40" name="u_inc_assignment_group" type="boolean"/>
+        <element label="Caller" max_length="40" name="u_inc_caller" type="boolean"/>
+        <element label="Category" max_length="40" name="u_inc_category" type="boolean"/>
+        <element label="Contact Type" max_length="40" name="u_inc_contact_type" type="boolean"/>
+        <element label="Description" max_length="40" name="u_inc_description" type="boolean"/>
+        <element label="Was there an active duplicate incident regarding this incident?" max_length="40" name="u_inc_duplicates" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Incident Type" mandatory="true" max_length="40" name="u_inc_incident_type" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Existing" sequence="0" value="existing"/>
+                <element inactive_on_update="false" label="New" sequence="1" value="new"/>
+                <element inactive_on_update="false" label="Transfer" sequence="2" value="transfer"/>
+            </choice>
+        </element>
+        <element label="Priority" max_length="40" name="u_inc_priority" type="boolean"/>
+        <element label="Short Description" max_length="41" name="u_inc_short_description" type="boolean"/>
+        <element label="Subcategory" max_length="40" name="u_inc_subcategory" type="boolean"/>
+        <element label="Was the client responded to in an appropriate manner?" max_length="40" name="u_review_bool_appr_resp" type="boolean"/>
+        <element label="Were KB or HUB articles sent to the client? (If applicable)" max_length="40" name="u_review_bool_articles_sent" type="boolean"/>
+        <element label="Did the technician call the user if there was miscommunication?" max_length="40" name="u_review_bool_back_forth" type="boolean"/>
+        <element label="Did the technician check for the client's availability?" max_length="40" name="u_review_bool_client_availability" type="boolean"/>
+        <element label="Was the client called if asked? (If applicable)" max_length="40" name="u_review_bool_phone_call" type="boolean"/>
+        <element label="Did the technician ask the client to resolve the incident?" max_length="40" name="u_review_bool_resolve_permission" type="boolean"/>
+        <element label="Did the technician respond in a timely manner?" max_length="40" name="u_review_bool_resp_time" type="boolean"/>
+        <element label="Did the technician give a synopsis of the resolution?" max_length="40" name="u_review_bool_synopsis" type="boolean"/>
+        <element label="Was the incident resolved in a timely manner?" max_length="40" name="u_review_bool_timely_resolve" type="boolean"/>
+        <element label="Improvements" max_length="65536" name="u_review_html_improvements" type="html"/>
+        <element label="Wins" max_length="65536" name="u_review_html_wins" type="html"/>
+        <element attributes="edge_encryption_enabled=true" choice="3" default="new" label="Review Stage" max_length="40" name="u_review_stage" read_only="true" type="string">
+            <choice>
+                <element inactive="true" inactive_on_update="true" label="completed" sequence="0" value="Completed"/>
+                <element inactive_on_update="false" label="New" sequence="0" value="new"/>
+                <element inactive_on_update="false" label="Manager Review" sequence="1" value="manager review"/>
+                <element inactive_on_update="false" label="Technician Review" sequence="2" value="technician review"/>
+                <element inactive_on_update="false" label="Closed" sequence="4" value="closed"/>
+            </choice>
+        </element>
+        <element label="Was the user acknowledged?" max_length="40" name="u_transfer_bool_ack" type="boolean"/>
+        <element label="Was the other transferring department contacted?" max_length="40" name="u_transfer_bool_dept_contact" type="boolean"/>
+        <element label="Were detailed work notes put in the incident?" max_length="40" name="u_transfer_bool_detailed_work" type="boolean"/>
+    </element>
+</database>

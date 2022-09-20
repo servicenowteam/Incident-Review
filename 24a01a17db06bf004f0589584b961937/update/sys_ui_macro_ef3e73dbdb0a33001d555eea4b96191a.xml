@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description>Similar to the built-in activity filter formatter, but get's the reference incident record. &#13;
+&#13;
+1. Retrieve the incident, and parse the comments and work notes.&#13;
+2. Iterate, and create the sn-cards same as activity feed. &#13;
+3. allow for an inner scrolling field inside of the incident review record. </description>
+        <media_type/>
+        <name>comments_and_work_notes</name>
+        <scoped_name>x_momo_inc_rvw_comments_and_work_notes</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-20 22:11:12</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ef3e73dbdb0a33001d555eea4b96191a</sys_id>
+        <sys_mod_count>344</sys_mod_count>
+        <sys_name>comments_and_work_notes</sys_name>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_update_name>sys_ui_macro_ef3e73dbdb0a33001d555eea4b96191a</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-06-29 15:38:57</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+  <g2:evaluate var="jvar_comments" object="true">
+    var gr = new GlideRecord('incident');
+	var incident;
+	if ("$[jvar_incident_id]" !== "") {
+	 incident = "$[jvar_incident_id]";
+	} else {
+	  incident = current.getValue('incident');
+	}
+    
+    gr.addQuery('sys_id', incident);
+    gr.query();
+    var notes = [];
+    if (gr.hasNext()) {
+      gr.next();
+      try {
+        var comments = gr.comments_and_work_notes.getJournalEntry(-1);
+    
+        notes = comments.split(/\n{2}(?=[0-9]{4}\-[0-9]{2}\-[0-9]{2} [0-9]{2}\:[0-9]{2}\:[0-9]{2} \-)/);
+      } catch (e) {
+		  gs.info(e)
+      }
+    }
+    notes;
+  </g2:evaluate>
+	<j2:if test="$[!empty(jvar_comments)]">
+		<table style="width: 100%;" class="activity_table" role="presentation">
+		  <tbody>
+			<tr>
+			  <td class="sn-form-stream-init">
+				<div class="sn-form-inline-stream-container form-stream">
+				  <label class="control-label col-xs-12 col-md-1_5 col-lg-2"></label>
+				  <div class="sn-form-inline-stream-entries col-xs-10 col-md-9 col-lg-8 form-field" style="overflow-x:hidden;overflow-y:scroll;max-height:500px;padding: 15px 15px 0px 15px;border: 1px solid #bdc0c4;border-radius:2px;">
+					<ul class="h-card-wrapper activities-form">
+					  <j2:forEach items="$[jvar_comments]" var="jvar_comment">
+							<j2:if test="$[jvar_comment != '']">
+							  <li class="h-card h-card_md h-card_comments">
+								<g2:evaluate var="jvar_formatted_date" jelly="true">
+								  var comment = jelly.jvar_comment;
+								  var date = comment.split(' - ');
+								  var formatted = date[0];
+								  formatted;
+								</g2:evaluate>
+								<g2:evaluate var="jvar_comment_type" jelly="true">
+								  var comment = jelly.jvar_comment;
+								  var type;
+								  if (/\(Work notes\)/.test(comment)) {
+									type = 'work';
+								  } else {
+									type = 'comment'
+								  }
+								  type;
+								</g2:evaluate>
+								<g2:evaluate var="jvar_formatted_name" jelly="true">
+								  var comment = jelly.jvar_comment;
+								  var aComment = comment.split(/\(Work notes\)|\(Additional comments\)/);
+								  comment = aComment[0].replace(/[0-9]{4}\-[0-9]{2}\-[0-9]{2} [0-9]{2}\:[0-9]{2}\:[0-9]{2} \-/,'');
+								  comment = comment.split(/\n/);
+								  comment = comment[0];
+								</g2:evaluate>
+								<g2:evaluate var="jvar_formatted_comment" jelly="true">
+								  var comment = jelly.jvar_comment;
+
+								  var fComment = comment.split(/\(Work notes\)|\(Additional comments\)/);
+								  comment = fComment[0].replace(/[0-9]{4}\-[0-9]{2}\-[0-9]{2} [0-9]{2}\:[0-9]{2}\:[0-9]{2} \- [A-Za-z\s]+/, '') + fComment[1];
+								  comment = comment.replace(/^\n{1,2}/, '')
+								  comment = comment.replace('undefined', '');
+								  comment = comment.trim().replace('\n', "<br />");
+								  comment;
+								</g2:evaluate>
+								<div class="sn-card-component sn-card-component_first sn-card-component_meta sn-card-component_meta_sibling">
+								  <div class="sn-card-component-avatar sn-avatar_xs sn-avatar_v2">
+									<div class="sn-avatar-container">
+									  <span class="sn-avatar-initials">$[jvar_formatted_name.charAt(1)]</span>
+									</div>
+								  </div>
+								  <span class="sn-card-component-createdby">$[jvar_formatted_name]</span>
+								</div>
+								<div class="sn-card-component sn-card-component_first sn-card-component_meta">
+								  <span class="sn-card-component-time">
+									<j2:if test="$[jvar_comment_type == 'work']">
+									  <span>Work notes</span>
+									</j2:if>
+									<j2:if test="$[jvar_comment_type == 'comment']">
+									  <span>Additional comments</span>
+									</j2:if>
+									<span class="sn-card-component_accent-bar_bullet">•</span>
+									<div class="date-calender" style="display:inline;">$[jvar_formatted_date]</div>
+								  </span>
+
+								</div>
+								<div class="sn-card-component sn-card-component_summary sn-card-component_summary_spacing">
+								  <div class="sn-widget sn-widget-textblock state-expanded ">
+									<span class="sn-widget-textblock-body">
+									<g2:no_escape>$[jvar_formatted_comment]</g2:no_escape>
+									</span>
+								   </div>
+								  </div>
+
+
+								<j2:if test="$[jvar_comment_type != 'work']">
+								  <div class="sn-card-component_accent-bar sn-card-component_accent-bar_dark"></div>
+								</j2:if>
+								<j2:if test="$[jvar_comment_type == 'work']">
+								  <div class="sn-card-component_accent-bar sn-card-component_accent-bar_dark" style="background-color: gold;"></div>
+								</j2:if>
+							  </li>
+							</j2:if>
+					  </j2:forEach>
+					</ul>
+				  </div>
+				  <div class="col-xs-2 col-md-1_5 col-lg-2 form-field-addons"></div>
+				</div>
+			  </td>
+			</tr>
+		  </tbody>
+		</table>
+	</j2:if>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

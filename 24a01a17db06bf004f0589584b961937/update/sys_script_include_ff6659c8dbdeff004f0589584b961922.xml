@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_momo_inc_rvw.IsTechnicianAssigned</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>IsTechnicianAssigned</name>
+        <script><![CDATA[var IsTechnicianAssigned = Class.create();
+IsTechnicianAssigned.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    type: 'IsTechnicianAssigned',
+	getFields: function() {
+		var sysId = this.getParameter('sysparm_incident_id');
+		var userId = this.getParameter('sysparm_user_id');
+		var gr = new GlideRecord('incident');
+		gr.addQuery('sys_id', sysId);
+		gr.query();
+		if (gr.hasNext()) {
+			while (gr.next()) {
+				var assigned = gr.getValue('assigned_to');
+				return assigned;
+			}
+		}
+		return false;
+	}
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-22 17:33:11</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ff6659c8dbdeff004f0589584b961922</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>IsTechnicianAssigned</sys_name>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_update_name>sys_script_include_ff6659c8dbdeff004f0589584b961922</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-06-23 13:22:14</sys_updated_on>
+    </sys_script_include>
+</record_update>

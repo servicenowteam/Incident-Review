@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_application">
+    <sys_app_application action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category display_value="Custom Applications">e0355b31ef303000a61d5a3615c0fb78</category>
+        <description/>
+        <device_type>browser</device_type>
+        <hint/>
+        <mobile_app_menu/>
+        <name/>
+        <order>100</order>
+        <roles>x_momo_inc_rvw.review_manager,admin,x_momo_inc_rvw.review_technician</roles>
+        <sys_class_name>sys_app_application</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-20 14:46:40</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>05ae5613db46bf004f0589584b961976</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Incident Reviews</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_update_name>sys_app_application_05ae5613db46bf004f0589584b961976</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-06-22 16:16:33</sys_updated_on>
+        <title>Incident Reviews</title>
+        <view_name/>
+        <view_on_mobile>false</view_on_mobile>
+    </sys_app_application>
+</record_update>

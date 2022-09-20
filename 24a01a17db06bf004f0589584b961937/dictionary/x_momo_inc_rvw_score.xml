@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Score" max_length="40" name="x_momo_inc_rvw_score" sizeclass="15" type="collection">
+        <element default="0" label="Appropriate Response" max_length="2" name="appropriate_response" type="integer"/>
+        <element default="0" label="Ask client for resolution" max_length="2" name="ask_client_for_resolution" type="integer"/>
+        <element default="0" label="Assigned To" max_length="1" name="assigned_to" type="integer"/>
+        <element default="0" label="Assignment Group" max_length="1" name="assignment_group" type="integer"/>
+        <element default="0" label="Caller" max_length="1" name="caller" type="integer"/>
+        <element default="0" label="Call user if miscommunication" max_length="2" name="call_user_if_miscommunication" type="integer"/>
+        <element default="0" label="Category" max_length="1" name="category" type="integer"/>
+        <element default="0" label="Check for client availability" max_length="2" name="check_for_client_availability" type="integer"/>
+        <element default="0" label="Client Called" max_length="2" name="client_called" type="integer"/>
+        <element default="0" label="Contact Type" max_length="1" name="contact_type" type="integer"/>
+        <element default="0" label="Description" max_length="1" name="description" type="integer"/>
+        <element default="0" label="Detailed Work Notes" max_length="2" name="detailed_work_notes" type="integer"/>
+        <element default="0" label="Follow Up" max_length="10" name="follow_up" type="integer"/>
+        <element default="0" label="Initial Response" max_length="10" name="initial_response" type="integer"/>
+        <element default="0" label="Initial Steps" max_length="10" name="initial_steps" type="integer"/>
+        <element default="0" label="KB or Hub Articles Applied" max_length="2" name="kb_or_hub_articles_applied" type="integer"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element default="0" label="Priority" max_length="1" name="priority" type="integer"/>
+        <element default="0" label="Resolution" max_length="10" name="resolution" type="integer"/>
+        <element default="0" label="Resolved in Timely Manner" max_length="2" name="resolved_in_timely_manner" type="integer"/>
+        <element default="0" label="Short Description" max_length="1" name="short_description" type="integer"/>
+        <element default="0" label="Subcategory" max_length="1" name="subcategory" type="integer"/>
+        <element default="0" label="Synopsis Given" max_length="2" name="synopsis_given" type="integer"/>
+        <element default="0" label="Timely Response" max_length="2" name="timely_response" type="integer"/>
+        <element default="0" label="Total" max_length="40" name="total" type="integer"/>
+        <element default="0" label="Total Points" max_length="40" name="total_points" type="integer"/>
+        <element default="0" label="Transfer" max_length="10" name="transfer" type="integer"/>
+        <element default="0" label="User Acknowledgement" max_length="2" name="user_acknowledgement" type="integer"/>
+        <element default="0" label="Warm Handoff" max_length="2" name="warm_handoff" type="integer"/>
+    </element>
+</database>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Follow Up - 2 points each" section_id="b9807880db9eff004f0589584b96199f" sys_domain="global" table="x_momo_inc_rvw_review" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>u_review_bool_appr_resp</element>
+            <position>0</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-06-22 14:40:38</sys_created_on>
+            <sys_id>9e80b880db9eff004f0589584b961959</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Follow Up - 2 points each" display_value="Follow Up - 2 points each" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">b9807880db9eff004f0589584b96199f</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-06-22 14:40:38</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>u_review_bool_back_forth</element>
+            <position>1</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-06-22 14:40:38</sys_created_on>
+            <sys_id>1280b880db9eff004f0589584b96195a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Follow Up - 2 points each" display_value="Follow Up - 2 points each" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">b9807880db9eff004f0589584b96199f</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-06-22 14:40:38</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>u_review_bool_resp_time</element>
+            <position>2</position>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-06-22 14:40:38</sys_created_on>
+            <sys_id>9280b880db9eff004f0589584b96195a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Follow Up - 2 points each" display_value="Follow Up - 2 points each" name="x_momo_inc_rvw_review" sys_domain="global" view="Default view">b9807880db9eff004f0589584b96199f</sys_ui_section>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-06-22 14:40:38</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Follow Up - 2 points each</caption>
+            <header>false</header>
+            <name>x_momo_inc_rvw_review</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-06-22 14:40:37</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>b9807880db9eff004f0589584b96199f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_momo_inc_rvw_review</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+            <sys_update_name>sys_ui_section_b9807880db9eff004f0589584b96199f</sys_update_name>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-06-22 14:40:37</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

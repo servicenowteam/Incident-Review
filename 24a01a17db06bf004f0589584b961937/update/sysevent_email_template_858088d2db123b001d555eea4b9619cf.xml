@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_email_template">
+    <sysevent_email_template action="INSERT_OR_UPDATE">
+        <collection>x_momo_inc_rvw_review</collection>
+        <email_layout display_value="Movement Layout">846fe27cdbe9c38012d4dbbb5e961916</email_layout>
+        <message/>
+        <message_html><![CDATA[<p><span style="font-size: 14pt;">Hello ${incident.assigned_to.first_name},</span></p>
+<p><span style="font-size: 14pt;">This is a reminder for, ${URI_REF}, I see you have not accepted nor appealed this review yet, please do so as soon as possible.</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14pt;">Thank you,</span></p>
+<p><span style="font-size: 14pt;">${incident.assignment_group.manager.name} | ${incident.assignment_group.manager.title}</span></p>
+<p style="text-align: left;"><span style="color: #000000; font-size: 12pt;"><a href="http://movement.com">movement.com</a></span></p>
+<p><span style="font-size: 12pt;"><span style="color: #000000;">Have I made you a raving fan today? If so, please email&nbsp;</span><a style="color: #000000;" title="Ravingfans@movementmortgage.com" href="mailto:Ravingfans@movementmortgage.com">Ravingfans@movementmortgage.com</a></span></p>
+<p style="text-align: justify;"><span style="color: #000000; font-size: 12pt;">&ldquo;Movement Mortgage&rdquo; is a registered trademark of the Movement Mortgage, LLC, and a Delaware limited liability company. Please be aware that e-mail is NOT a secured communication vehicle, and that others may in certain circumstances be able to view its&nbsp;contents. As a result, while we are&nbsp;happy to provide this information by e-mail, we do NOT conduct actual business transactions by e-mail.&nbsp;Please contact the sender directly if you have any concurs about his message. All loans subject to credit approval and property appraisal. Equal Housing Lender. This communication is confidential and propriety business communication. It is intended solely for the use of the designated recipients(s). If this communication is received error, please contact the sender and delete this communication.</span></p>
+<hr />
+<p><span style="font-size: 12pt;"><strong>Click to view this review in your browser, ${URI_REF}.</strong></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>incident_review_reminder</name>
+        <sms_alternate/>
+        <subject>ACTION REQUIRED: ${number} incident review</subject>
+        <sys_class_name>sysevent_email_template</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-29 10:59:56</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>858088d2db123b001d555eea4b9619cf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>incident_review_reminder</sys_name>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_update_name>sysevent_email_template_858088d2db123b001d555eea4b9619cf</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-06-29 10:59:56</sys_updated_on>
+        <sys_version>2</sys_version>
+    </sysevent_email_template>
+</record_update>

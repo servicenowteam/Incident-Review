@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="approval" table="x_momo_inc_rvw_review" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>approval</element>
+            <name>x_momo_inc_rvw_review</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-06-22 13:33:25</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>f5ac6b42dbf0cc10adba3e0b7c961950</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>approval</sys_name>
+            <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+            <sys_update_name>sys_choice_x_momo_inc_rvw_review_approval</sys_update_name>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-06-22 13:33:25</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>approval</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Manager Review</label>
+            <language>en</language>
+            <name>x_momo_inc_rvw_review</name>
+            <sequence>0</sequence>
+            <synonyms/>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-06-22 13:33:25</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>ad21a408db5eff004f0589584b9619af</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-06-22 13:33:25</sys_updated_on>
+            <value>manager_review</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>approval</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Technician Review</label>
+            <language>en</language>
+            <name>x_momo_inc_rvw_review</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-06-22 13:33:25</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>ed21a408db5eff004f0589584b9619b1</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-06-22 13:33:25</sys_updated_on>
+            <value>tech_review</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>approval</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Closed</label>
+            <language>en</language>
+            <name>x_momo_inc_rvw_review</name>
+            <sequence>2</sequence>
+            <synonyms/>
+            <sys_created_by>douglas.schamberg</sys_created_by>
+            <sys_created_on>2019-06-22 13:33:25</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>a921a408db5eff004f0589584b9619b3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>douglas.schamberg</sys_updated_by>
+            <sys_updated_on>2019-06-22 13:33:25</sys_updated_on>
+            <value>closed</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

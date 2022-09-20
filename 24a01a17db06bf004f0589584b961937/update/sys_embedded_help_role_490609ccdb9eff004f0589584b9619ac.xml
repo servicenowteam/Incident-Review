@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>1000</order>
+        <role display_value="x_momo_inc_rvw.review_technician" name="x_momo_inc_rvw.review_technician">82f58100dbdeff004f0589584b961936</role>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-22 16:14:29</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>490609ccdb9eff004f0589584b9619ac</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>82f58100dbdeff004f0589584b961936</sys_name>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_update_name>sys_embedded_help_role_490609ccdb9eff004f0589584b9619ac</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-06-22 16:14:29</sys_updated_on>
+    </sys_embedded_help_role>
+</record_update>

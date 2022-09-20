@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <business_calendar/>
+        <condition><![CDATA[var ga = new GlideAggregate('x_momo_inc_rvw_review');
+ga.addAggregate('COUNT');
+ga.addEncodedQuery('sys_updated_on<=javascript:gs.endOfLastWeek()^u_review_stage=technician review');
+ga.query();
+ga.next();
+
+ga.getAggregate('COUNT') !== '0';]]></condition>
+        <conditional>true</conditional>
+        <entered_time/>
+        <name>review_reminder</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <run_as display_value="Douglas Schamberg">41c0da35db017e0093373c8f9d96198b</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2019-06-29 11:04:33</run_start>
+        <run_time>1970-01-01 15:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[var gr = new GlideRecord('x_momo_inc_rvw_review');
+gr.addEncodedQuery('sys_updated_on<=javascript:gs.endOfLastWeek()^u_review_stage=technician review');
+gr.query();
+while (gr.next()) {
+	gs.eventQueue('x_momo_inc_rvw.review_reminder', gr);
+}]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-29 11:13:34</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>d1328c16db123b001d555eea4b961918</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>review_reminder</sys_name>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_update_name>sysauto_script_d1328c16db123b001d555eea4b961918</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-07-12 15:44:33</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

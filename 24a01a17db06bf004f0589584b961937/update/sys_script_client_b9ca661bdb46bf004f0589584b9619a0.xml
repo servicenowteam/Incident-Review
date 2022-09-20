@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>incident</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>on_change_incident</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+  if (isLoading) return;
+
+  var stage = g_form.getValue('u_review_stage');
+
+  var manager = (g_user.hasRole('x_momo_inc_rvw.inc_review_manager') || g_user.hasRole('admin'));
+
+  var type = g_form.getValue('u_inc_incident_type');
+
+  var currentUser = g_user.userID;
+
+  var defaultHTML = '<div><!-- Empty Related Activity Feed Placeholder --></div>';
+
+  function goBack() {
+    try {
+      return gsftSubmitBack();
+    } catch (e) {
+      return gsft_main.history.back();
+    }
+  }
+
+  function setRelatedActivityFeed(html) {
+    try {
+      var sections = g_form.getSections();
+      var section = sections[0];
+	  var child;
+      try {
+		  child = section.children[8];
+	  } catch (e) {
+		  child = section.children[9];
+	  }
+      var row = child.children[1];
+
+      var col = row.children[0];
+      var formGroup = col.children[1];
+      formGroup.innerHTML = html;
+    } catch (e) {
+      console.log('Could not find incident feed. At ' + (new Date()) + ' for ' + newValue + '. Debug Message: ' + e);
+    }
+    
+  }
+
+  function showRelatedActivityFeed() {
+    if (newValue === '' || newValue === null || newValue === undefined) {
+      setRelatedActivityFeed(defaultHTML);
+      return;
+    }
+
+    var ga = new GlideAjax('global.JellyRunnerProcessor');
+    ga.addParam("sysparm_name", "processJellyScript");
+    ga.addParam("sysparm_incident_id", newValue);
+    ga.getXML(function(response) {
+      var answer = response.responseXML.documentElement.getAttribute("answer");
+      setRelatedActivityFeed(answer);
+    });
+  }
+
+  function setSectionsByIncidentType() {
+    
+    if (type === 'new') {
+      g_form.setSectionDisplay("transfer_incident2pointseach", false);
+      g_form.setSectionDisplay("follow_up2pointseach", true);
+      g_form.setSectionDisplay("resolution_2pointseach", true);
+      g_form.setSectionDisplay("initial_response2pointseach", true);
+      g_form.setSectionDisplay("incident_initialsteps1pointeach", true);
+      g_form.setSectionDisplay("managers_notes", true);
+    } else if (type === 'existing') {
+      g_form.setSectionDisplay("transfer_incident2pointseach", false);
+      g_form.setSectionDisplay("initial_response2pointseach", true);
+      g_form.setSectionDisplay("resolution_2pointseach", true);
+      g_form.setSectionDisplay("follow_up2pointseach", true);
+      g_form.setSectionDisplay("incident_initialsteps1pointeach", true);
+      g_form.setSectionDisplay("managers_notes", true);
+    } else if (type === 'transfer') {
+      g_form.setSectionDisplay("transfer_incident2pointseach", true);
+      g_form.setSectionDisplay("incident_initialsteps1pointeach", true);
+      g_form.setSectionDisplay("managers_notes", true);
+      g_form.setSectionDisplay("resolution_2pointseach", false);
+      g_form.setSectionDisplay("follow_up2pointseach", false);
+      g_form.setSectionDisplay("initial_response2pointseach", false);
+
+    } else {
+      hideAllSections();
+    }
+
+    return;
+  }
+
+  function hideAllSections() {
+    var _sections = g_form.getSectionNames();
+    for (var i=0;i<_sections.length;i++) {
+      g_form.setSectionDisplay(_sections[i], false);
+    }
+    return;
+  }
+
+  if (newValue === '' || newValue === null || newValue === undefined) {
+    hideAllSections();
+    g_form.setMandatory('u_inc_incident_type', false);
+    g_form.setDisplay('u_inc_incident_type', false);
+    setRelatedActivityFeed(defaultHTML);
+    return;
+  } else {
+    setSectionsByIncidentType();
+    if (manager) {
+     g_form.setMandatory('u_inc_incident_type', true);
+     g_form.setDisplay('u_inc_incident_type', true);
+	 g_form.setDisabled('u_inc_incident_type', false);
+     showRelatedActivityFeed(); 
+    }
+  }
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>douglas.schamberg</sys_created_by>
+        <sys_created_on>2019-06-20 15:42:47</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>b9ca661bdb46bf004f0589584b9619a0</sys_id>
+        <sys_mod_count>43</sys_mod_count>
+        <sys_name>on_change_incident</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Incident Review" source="x_momo_inc_rvw">24a01a17db06bf004f0589584b961937</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Incident Review">24a01a17db06bf004f0589584b961937</sys_scope>
+        <sys_update_name>sys_script_client_b9ca661bdb46bf004f0589584b9619a0</sys_update_name>
+        <sys_updated_by>douglas.schamberg</sys_updated_by>
+        <sys_updated_on>2019-10-31 12:19:08</sys_updated_on>
+        <table>x_momo_inc_rvw_review</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>
